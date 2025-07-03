@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  load-balancer:
+    build: ./load-balancer
+    container_name: load-balancer
+    ports:
+      - "5000:5000"
+    networks:
+      - net1
+    volumes:
+      # Mount the host's Docker socket to allow this container to manage other containers
+      - /var/run/docker.sock:/var/run/docker.sock
+    # Privileged mode is required for docker-in-docker operations
+    privileged: true
+    # Overriding default server image to uploaded server image
+    environment:
+      - SERVER_IMAGE=davemanufor/ds-project-server
+
+networks:
+  net1:
+    external: true
