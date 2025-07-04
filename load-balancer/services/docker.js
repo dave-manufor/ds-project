@@ -23,7 +23,7 @@ export const spawnServer = async (hostname) => {
       name: hostname,
       Hostname: hostname,
       Labels: {
-        // Used later to restore loadbalancer state in case of failure
+        // Used later to restore loadbalancers state in case of failure
         role: "server-replica",
         managedBy: "load-balancer",
       },
