@@ -1,3 +1,4 @@
+//testing how the loadbalancer works with different servers
 import { ensureReplicas, runLoadTest, plotResults } from "./utils.js";
 
 export default async () => {

@@ -1,3 +1,4 @@
+//how the balancer tests back to back
 import A1 from "./A1.js";
 import A2 from "./A2.js";
 import {
