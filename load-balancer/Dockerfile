@@ -1,7 +1,6 @@
-FROM node:18-alpine
+FROM docker:dind
 
-# Install Docker CLI to interact with the host's Docker daemon
-RUN apk add --no-cache docker-cli
+RUN apk add --no-cache nodejs npm
 
 WORKDIR /usr/src/app
 
