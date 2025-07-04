@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 const port = 5000;
 
-// A unique ID for each server instance, passed as an environment variabl
+// A unique ID for each server instance, passed as an environment variable
 const serverId = process.env.SERVER_ID || "Unknown";
 
 // Endpoint to identify the server
