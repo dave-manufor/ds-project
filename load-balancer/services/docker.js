@@ -54,7 +54,10 @@ export const removeServer = async (hostname) => {
     console.log(`Removing server with hostname: ${hostname}`);
     hashMap.removeServer(hostname);
     const container = docker.getContainer(hostname); // Get container by hostname
-    await container.stop();
+    const inspect = await container.inspect();
+    if (inspect.State.Running) {
+      await container.stop();
+    }
     await container.remove();
     console.log(`Successfully removed server: ${hostname}`);
   } catch (err) {

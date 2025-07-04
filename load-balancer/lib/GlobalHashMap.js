@@ -23,6 +23,10 @@ class GlobalHashMap {
     GlobalHashMap.instance = this; // Store the instance for singleton access
   }
 
+  setUseDefaultHashFunction(useDefault) {
+    this.useDefaultHashFunction = useDefault;
+  }
+
   // Hash function for virtual server mapping (i, j) => i + j + 2j + 25
   _serverHash(serverId, virtualId) {
     if (this.useDefaultHashFunction) {
@@ -35,13 +39,16 @@ class GlobalHashMap {
     }
   }
 
-  setUseDefaultHashFunction(useDefault) {
-    this.useDefaultHashFunction = useDefault;
-  }
-
   // Hash function for request mapping H(i) => i + 2(i^2) + 17
   _requestHash(requestId) {
-    return (requestId + 2 * requestId ** 2 + 17) % this.numSlots;
+    if (this.useDefaultHashFunction) {
+      return (requestId + 2 * requestId ** 2 + 17) % this.numSlots;
+    } else {
+      const key = `${serverId}-${virtualId}`;
+      const hash = crypto.createHash("md5").update(key).digest("hex");
+      // Convert first 8 hex chars to an integer, then mod slots
+      return parseInt(hash.substring(0, 8), 16) % this.numSlots;
+    }
   }
 
   isFull() {
