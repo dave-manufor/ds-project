@@ -18,7 +18,7 @@ const hashMap = new GlobalHashMap();
 // Initialize Docker network
 initDockerNetwork(balancerConfig.networkName);
 
-// GET /rep: Get replica stat
+// GET /rep: Get replica status 
 app.get("/rep", (req, res) => {
   const replicas = hashMap.getReplicas();
   res.status(200).json({
