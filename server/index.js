@@ -15,7 +15,7 @@ app.get("/home", (req, res) => {
   });
 });
 
-// Endpoint for the load balancer's health chec
+// Endpoint for the load balancer's health check
 // GET /heartbeat
 app.get("/heartbeat", (req, res) => {
   // Responds with a 200 OK to indicate it's alive
