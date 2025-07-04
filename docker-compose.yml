@@ -5,7 +5,7 @@ services:
     build: ./load-balancer
     container_name: load-balancer
     ports:
-      - "5000:5000"
+      - "5001:5000"
     networks:
       - net1
     volumes:
