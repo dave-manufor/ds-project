@@ -1,3 +1,4 @@
+//the hash function that converts hostnames to server ids for balancing.
 import crypto from "crypto";
 
 const getServerIdFromHostname = (hostname) => {
