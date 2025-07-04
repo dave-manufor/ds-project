@@ -1,7 +1,6 @@
 FROM node:18-alpine
 
-# Install Docker CLI to interact with the host's Docker daemon
-RUN apk add --no-cache docker
+
 
 WORKDIR /usr/src/app
 
