@@ -1,4 +1,5 @@
 import hashmapConfig from "../config/hashmapConfig.js";
+import crypto from "crypto";
 
 class GlobalHashMap {
   constructor(
@@ -17,13 +18,25 @@ class GlobalHashMap {
     this.ring = Array.from({ length: this.numSlots }, () => null);
     // Stores server hostnames and their IDs
     this.servers = new Map();
+    this.useDefaultHashFunction = true; // Flag to use default hash functions
 
     GlobalHashMap.instance = this; // Store the instance for singleton access
   }
 
   // Hash function for virtual server mapping (i, j) => i + j + 2j + 25
   _serverHash(serverId, virtualId) {
-    return (serverId + virtualId + 2 * virtualId + 25) % this.numSlots;
+    if (this.useDefaultHashFunction) {
+      return (serverId + virtualId + 2 * virtualId + 25) % this.numSlots;
+    } else {
+      const key = `${serverId}-${virtualId}`;
+      const hash = crypto.createHash("md5").update(key).digest("hex");
+      // Convert first 8 hex chars to an integer, then mod slots
+      return parseInt(hash.substring(0, 8), 16) % this.numSlots;
+    }
+  }
+
+  setUseDefaultHashFunction(useDefault) {
+    this.useDefaultHashFunction = useDefault;
   }
 
   // Hash function for request mapping H(i) => i + 2(i^2) + 17
@@ -80,6 +93,25 @@ class GlobalHashMap {
 
   getReplicas() {
     return Array.from(this.servers.keys());
+  }
+
+  visualizeRing() {
+    console.log("Hash Ring Visualization:");
+    const dict = {};
+    for (let i = 0; i < this.numSlots; i++) {
+      if (this.ring[i] !== null) {
+        const { hostname, serverId } = this.ring[i];
+        if (!dict[hostname]) {
+          dict[hostname] = [];
+        }
+        dict[hostname].push({ slot: i });
+      }
+    }
+    for (const [hostname, slots] of Object.entries(dict)) {
+      console.log(`Server: ${hostname}`);
+      console.log("Slots:", slots.map((slot) => slot.slot).join(", "));
+      console.log("=========================");
+    }
   }
 }
 

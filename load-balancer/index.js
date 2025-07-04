@@ -9,6 +9,7 @@ import {
 } from "./services/docker.js";
 import balancerConfig from "./config/balancerConfig.js";
 import generateRandomHostname from "./util/generateRandomHostname.js";
+import getServerIdFromHostname from "./util/getServerIdFromHostname.js";
 
 const app = express();
 app.use(express.json());
@@ -123,6 +124,40 @@ app.delete("/rm", async (req, res) => {
       N: replicas.length,
       replicas: replicas,
     },
+    status: "successful",
+  });
+});
+
+// Post /function: Utility to change hash function for tests (A4)
+app.post("/function", (req, res) => {
+  const { useDefault } = req.body || {};
+  if (useDefault === undefined) {
+    return res
+      .status(400)
+      .json({ message: "<Error> Invalid payload", status: "failure" });
+  }
+
+  if (typeof useDefault !== "boolean") {
+    return res.status(400).json({
+      message: "<Error> 'useDefault' must be a boolean",
+      status: "failure",
+    });
+  }
+
+  hashMap.setUseDefaultHashFunction(useDefault);
+
+  // Redistribute the servers if the hash function is changed
+  const currentReplicas = hashMap.getReplicas();
+  if (currentReplicas.length !== 0) {
+    currentReplicas.forEach((hostname) => {
+      const serverId = getServerIdFromHostname(hostname);
+      hashMap.removeServer(hostname);
+      hashMap.addServer(hostname, serverId);
+    });
+  }
+
+  res.status(200).json({
+    message: `Hash function set to ${useDefault ? "default" : "custom"}`,
     status: "successful",
   });
 });
