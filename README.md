@@ -128,7 +128,7 @@ We launched 10,000 asynchronous requests to the `/home` endpoint with `N=3` serv
 
 **Observation**: The requests are distributed relatively evenly among the three servers, with minor variations. This demonstrates that the consistent hashing algorithm is effective at balancing the load.
 
-![A1 Test Results](./img/A1_3.png)
+![A1 Test Results](./tests/img/A1_3.png)
 
 ### A-2: Scalability Analysis
 
@@ -136,11 +136,11 @@ We tested the system's scalability by varying the number of server replicas (`N`
 
 **Observation**: As `N` increases, the average load per server decreases. The distribution remains even across different values of `N`, indicating that the load balancer scales effectively and adapts well to changes in the number of replicas.
 
-![A2 Test Results N=2](./img/A2_2.png)
-![A2 Test Results N=3](./img/A2_3.png)
-![A2 Test Results N=4](./img/A2_4.png)
-![A2 Test Results N=5](./img/A2_5.png)
-![A2 Test Results N=6](./img/A2_6.png)
+![A2 Test Results N=2](./tests/img/A2_2.png)
+![A2 Test Results N=3](./tests/img/A2_3.png)
+![A2 Test Results N=4](./tests/img/A2_4.png)
+![A2 Test Results N=5](./tests/img/A2_5.png)
+![A2 Test Results N=6](./tests/img/A2_6.png)
 
 ### A-3: Endpoint and Fault Tolerance Testing
 
@@ -156,11 +156,17 @@ The A-1 and A-2 tests were repeated using a different set of hash functions (MD5
 **Observation**: The modified hash functions also resulted in an even distribution of load, similar to the default functions. This suggests that the underlying consistent hashing logic is robust. The MD5 hash is generally expected to provide a more uniform distribution and reduce collisions compared to simpler polynomial functions.
 
 **A-1 with Custom Hash (N=3)**
-![A4-A1 Test Results](./img/A4/A4-A1_3.png)
+![A4-A1 Test Results](./tests/img/A4/A4-A1_3.png)
 
 **A-2 with Custom Hash (N=2 to N=6)**
-![A4-A2 Test N=2](./img/A4/A4-A2_2.png)
-![A4-A2 Test N=3](./img/A4/A4-A2_3.png)
-![A4-A2 Test N=4](./img/A4/A4-A2_4.png)
-![A4-A2 Test N=5](./img/A4/A4-A2_5.png)
-![A4-A2 Test N=6](./img/A4/A4-A2_6.png)
+![A4-A2 Test N=2](./img/tests/A4/A4-A2_2.png)
+![A4-A2 Test N=3](./img/tests/A4/A4-A2_3.png)
+![A4-A2 Test N=4](./img/tests/A4/A4-A2_4.png)
+![A4-A2 Test N=5](./img/tests/A4/A4-A2_5.png)
+![A4-A2 Test N=6](./img/tests/A4/A4-A2_6.png)
+
+## Group Members
+####David Manufor 148326
+####Ruth Ogoro 145515
+####Nyakio Ndambiri 152136
+####Daryn Ongera 150490
