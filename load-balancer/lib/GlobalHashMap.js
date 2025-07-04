@@ -44,7 +44,7 @@ class GlobalHashMap {
     if (this.useDefaultHashFunction) {
       return (requestId + 2 * requestId ** 2 + 17) % this.numSlots;
     } else {
-      const key = `${serverId}-${virtualId}`;
+      const key = `${requestId}`;
       const hash = crypto.createHash("md5").update(key).digest("hex");
       // Convert first 8 hex chars to an integer, then mod slots
       return parseInt(hash.substring(0, 8), 16) % this.numSlots;
