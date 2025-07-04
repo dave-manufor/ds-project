@@ -62,7 +62,7 @@ The system consists of a load balancer that manages `N` server instances. The lo
 2.  Build the Docker images for the load balancer and the web server using the provided Makefile:
 
     ```bash
-    make build
+    make buil
     ```
 
 3.  Once the images are built, start the entire stack in detached mode:
