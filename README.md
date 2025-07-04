@@ -42,7 +42,7 @@ The system consists of a load balancer that manages `N` server instances. The lo
 
 ## Prerequisites
 
-- **OS**: Ubuntu 20.04 LTS / Parrot OS (or any other Linux distribution)
+- **OS**: Ubuntu 20.04 LTS
 - **Docker**: Version 20.10.23 or above
 - **Docker Compose**: Standalone version v2.15.1 or above
 - **Node.js**: Version 18.x or above (for running tests)
@@ -56,8 +56,7 @@ The system consists of a load balancer that manages `N` server instances. The lo
 1.  Clone the repository to your local machine:
 
     ```bash
-    git clone [https://github.com/DarynOngera/load_balancer](https://github.com/DarynOngera/load_balancer)
-    cd load_balancer
+    git clone [https://github.com/dave-manufor/ds-project.git](https://github.com/dave-manufor/ds-project.git)
     ```
 
 2.  Build the Docker images for the load balancer and the web server using the provided Makefile:
