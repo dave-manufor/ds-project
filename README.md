@@ -159,14 +159,14 @@ The A-1 and A-2 tests were repeated using a different set of hash functions (MD5
 ![A4-A1 Test Results](./tests/img/A4/A4-A1_3.png)
 
 **A-2 with Custom Hash (N=2 to N=6)**
-![A4-A2 Test N=2](./img/tests/A4/A4-A2_2.png)
-![A4-A2 Test N=3](./img/tests/A4/A4-A2_3.png)
-![A4-A2 Test N=4](./img/tests/A4/A4-A2_4.png)
-![A4-A2 Test N=5](./img/tests/A4/A4-A2_5.png)
-![A4-A2 Test N=6](./img/tests/A4/A4-A2_6.png)
+![A4-A2 Test N=2](./tests/img/A4/A4-A2_2.png)
+![A4-A2 Test N=3](./tests/img/A4/A4-A2_3.png)
+![A4-A2 Test N=4](./tests/img/A4/A4-A2_4.png)
+![A4-A2 Test N=5](./tests/img/A4/A4-A2_5.png)
+![A4-A2 Test N=6](./tests/img/A4/A4-A2_6.png)
 
 ## Group Members
-####David Manufor 148326
-####Ruth Ogoro 145515
-####Nyakio Ndambiri 152136
-####Daryn Ongera 150490
+#### David Manufor 148326
+#### Ruth Ogoro 145515
+#### Nyakio Ndambiri 152136
+#### Daryn Ongera 150490
